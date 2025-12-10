@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-900 text-white antialiased">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eTranzact | Premium Analytics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="src/css/index.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        dark: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="h-full flex overflow-hidden">
+
+    <!-- Mobile Sidebar Backdrop -->
+    <div id="mobile-sidebar-backdrop" class="fixed inset-0 z-40 bg-slate-900/80 backdrop-blur-sm hidden lg:hidden transition-opacity"></div>
+
+    <!-- Sidebar -->
+    <nav id="sidebar" class="fixed inset-y-0 left-0 z-50 w-72 transform -translate-x-full transition-transform duration-300 lg:static lg:translate-x-0 bg-slate-900 border-r border-slate-800 flex flex-col">
+        <!-- Logo -->
+        <div class="flex items-center justify-center h-20 border-b border-slate-800">
+             <!-- Inline SVG Logo -->
+             <svg class="h-8 w-auto text-sky-500" viewBox="0 0 50 50" fill="currentColor">
+                <path d="M25 1C11.745 1 1 11.745 1 25s10.745 24 24 24 24-10.745 24-24S38.255 1 25 1zm0 44C13.954 44 5 35.046 5 24S13.954 5 25 5s20 8.954 20 20-8.954 20-20 20z"/>
+                <path d="M25 10c-8.284 0-15 6.716-15 15 0 8.284 6.716 15 15 15s15-6.716 15-15c0-8.284-6.716-15-15-15zm0 26c-6.075 0-11-4.925-11-11s4.925-11 11-11 11 4.925 11 11-4.925 11-11 11z"/>
+            </svg>
+            <span class="ml-3 text-xl font-bold tracking-tight text-white">eTranzact</span>
+        </div>
+
+        <!-- Links -->
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
+            <a href="#" class="group flex items-center px-4 py-3 text-sm font-medium rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 text-white shadow-lg shadow-sky-900/20">
+                <svg class="mr-3 h-5 w-5 text-sky-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                </svg>
+                Dashboard
+            </a>
+            <a href="src/pages/analytics.html" class="group flex items-center px-4 py-3 text-sm font-medium rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 transition-colors">
+                <svg class="mr-3 h-5 w-5 text-slate-500 group-hover:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                Analytics
+            </a>
+            <a href="#" class="group flex items-center px-4 py-3 text-sm font-medium rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 transition-colors">
+                <svg class="mr-3 h-5 w-5 text-slate-500 group-hover:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                History
+            </a>
+            <a href="#" class="group flex items-center px-4 py-3 text-sm font-medium rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 transition-colors">
+                 <svg class="mr-3 h-5 w-5 text-slate-500 group-hover:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Settings
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col min-w-0 bg-slate-950 overflow-hidden">
+        
+        <!-- Header -->
+        <header class="flex items-center justify-between h-20 px-8 border-b border-slate-800/50 bg-slate-900/50 backdrop-blur-md sticky top-0 z-30">
+            <div class="flex items-center lg:hidden">
+                <button id="menu-btn" type="button" class="-ml-2 p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+            
+            <h1 class="text-2xl font-semibold text-white tracking-tight">Incident Overview</h1>
+
+             <div class="flex items-center space-x-4">
+                 <!-- Notifications -->
+                <button class="p-2 rounded-full text-slate-400 hover:bg-slate-800 hover:text-white transition-colors relative">
+                    <span class="absolute top-2 right-2 h-2 w-2 rounded-full bg-sky-500"></span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                </button>
+                
+                <!-- Profile Dropdown (simplified) -->
+                <div class="relative">
+                     <button class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-sky-500" id="user-menu-button">
+                        <img class="h-9 w-9 rounded-full bg-slate-800 object-cover border-2 border-slate-800" src="https://ui-avatars.com/api/?name=Admin+User&background=0ea5e9&color=fff" alt="">
+                     </button>
+                </div>
+             </div>
+        </header>
+
+        <!-- Scrollable Content -->
+        <div class="flex-1 overflow-auto p-8">
+            
+            <!-- Filter Section -->
+            <div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                     <p class="text-sm text-slate-400">Welcome back, here's what's happening today.</p>
+                </div>
+                 <div class="relative w-64">
+                    <select id="bank-dropdown" class="block w-full rounded-lg border-0 bg-slate-800 py-2.5 pl-3 pr-10 text-white shadow-sm ring-1 ring-inset ring-slate-700 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6 appearance-none hover:bg-slate-700 transition-colors cursor-pointer">
+                        <option value="all">All Banks</option>
+                        <option value="zenith">Zenith Bank</option>
+                        <option value="gtb">GTBank</option>
+                        <option value="access">Access Bank</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-400">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div id="stats-container" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+                <!-- Stat Cards generated by JS -->
+            </div>
+
+            <!-- Charts Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Main Chart -->
+                <div class="lg:col-span-2 bg-slate-900/50 rounded-2xl p-6 border border-slate-800/50 shadow-xl backdrop-blur-sm">
+                    <h3 class="text-lg font-medium text-white mb-6">Incident History</h3>
+                    <div class="relative h-80 w-full">
+                         <canvas id="mainChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Secondary Chart / Info -->
+                <!-- Secondary Chart / Info -->
+                <div class="bg-slate-900/50 rounded-2xl p-6 border border-slate-800/50 shadow-xl backdrop-blur-sm">
+                     <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-medium text-white">Weekly Trends</h3>
+                         <select class="bg-slate-800 border-none text-xs rounded-md text-slate-400 focus:ring-0 cursor-pointer">
+                             <option>This Week</option>
+                             <option>Last Week</option>
+                         </select>
+                     </div>
+                     <div class="relative h-64 w-full flex items-center justify-center">
+                         <canvas id="trendsChart"></canvas>
+                     </div>
+                     <div class="mt-6 grid grid-cols-2 gap-4">
+                         <div class="p-3 rounded-lg bg-slate-800/50 border border-slate-700/50">
+                             <p class="text-xs text-slate-400 mb-1">Peak Time</p>
+                             <p class="text-sm font-medium text-white">14:00 - 16:00</p>
+                         </div>
+                         <div class="p-3 rounded-lg bg-slate-800/50 border border-slate-700/50">
+                             <p class="text-xs text-slate-400 mb-1">Avg Response</p>
+                             <p class="text-sm font-medium text-white">45 mins</p>
+                         </div>
+                     </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script type="module" src="src/js/index.js"></script>
+</body>
+</html>
