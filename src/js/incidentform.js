@@ -8,6 +8,14 @@
   const emptyState = document.getElementById("empty-state");
   const clearBtn = document.getElementById("clear-btn");
 
+  // Notification Elements
+  const notificationBtn = document.getElementById("notification-btn");
+  const notificationDropdown = document.getElementById("notification-dropdown");
+  const notificationBadge = document.getElementById("notification-badge");
+  const clearNotificationsBtn = document.getElementById("clear-notifications");
+  const notificationList = document.getElementById("notification-list");
+  const noNotifications = document.getElementById("no-notifications");
+
   // Initial Data
   let incidents = [
     {
@@ -156,6 +164,38 @@
       incidents = [];
       renderTable();
     });
+
+  // Notification Logic
+  if (notificationBtn && notificationDropdown) {
+    notificationBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      notificationDropdown.classList.toggle("hidden");
+      if (
+        !notificationDropdown.classList.contains("hidden") &&
+        notificationBadge
+      ) {
+        notificationBadge.classList.add("hidden");
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (
+        !notificationDropdown.classList.contains("hidden") &&
+        !notificationDropdown.contains(e.target) &&
+        !notificationBtn.contains(e.target)
+      ) {
+        notificationDropdown.classList.add("hidden");
+      }
+    });
+  }
+
+  if (clearNotificationsBtn) {
+    clearNotificationsBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (notificationList) notificationList.innerHTML = "";
+      if (noNotifications) noNotifications.classList.remove("hidden");
+    });
+  }
 
   // Init
   document.addEventListener("DOMContentLoaded", () => {
